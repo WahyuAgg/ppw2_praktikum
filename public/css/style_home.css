@@ -1,0 +1,89 @@
+/* File: public/css/style_home.css */
+
+/* Gaya umum untuk body */
+body {
+    font-family: Arial, sans-serif; /* Gunakan font yang bersih dan mudah dibaca */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4; /* Latar belakang abu-abu muda untuk halaman */
+}
+
+/* Gaya untuk kontainer */
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px; 
+    background: #fff; /* Latar belakang putih untuk area konten */
+    border-radius: 8px; /* Sudut membulat untuk kontainer */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Bayangan lembut di sekitar kontainer */
+}
+
+/* Gaya untuk tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd; /* Border abu-abu muda untuk tabel */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50; /* Latar belakang hijau gelap untuk header tabel */
+    color: white; /* Warna teks putih untuk header */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2; /* Warna latar belakang baris bergantian */
+}
+
+h2 {
+    color: #333; /* Warna teks gelap untuk heading */
+}
+
+/* Gaya untuk header */
+header {
+    background-color: #333; /* Latar belakang gelap untuk header */
+    color: white; /* Warna teks putih */
+    padding: 10px 0; /* Jarak padding atas dan bawah */
+    text-align: center; /* Teks di tengah */
+}
+
+/* Gaya untuk navigasi */
+nav ul {
+    list-style-type: none; /* Menghilangkan bullet dari list */
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline; /* Menampilkan item daftar secara horizontal */
+    margin-right: 15px; /* Jarak antara item navigasi */
+}
+
+nav ul li a {
+    color: white; /* Warna teks putih untuk tautan */
+    text-decoration: none; /* Menghilangkan garis bawah pada tautan */
+    font-weight: bold; /* Menebalkan teks tautan */
+}
+
+nav ul li a:hover {
+    text-decoration: underline; /* Garis bawah muncul saat tautan dihover */
+}
+
+/* Gaya untuk footer */
+footer {
+    background-color: #333; /* Latar belakang gelap untuk footer */
+    color: white; /* Warna teks putih */
+    padding: 10px 0; /* Jarak padding atas dan bawah */
+    text-align: center; /* Teks di tengah */
+    position: relative; /* Posisi relatif untuk footer */
+    bottom: 0; /* Tempatkan di bagian bawah halaman */
+    width: 100%; /* Lebar penuh */
+}
