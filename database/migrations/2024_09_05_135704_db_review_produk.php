@@ -24,7 +24,7 @@ return new class extends Migration
             });
 
         }
-        
+
 
     }
 
@@ -34,8 +34,6 @@ return new class extends Migration
     public function down(): void
     {
         // Drop tables if rollback happens
-        Schema::dropIfExists('review');
         Schema::dropIfExists('produk');
-        Schema::dropIfExists('user');
     }
 };
