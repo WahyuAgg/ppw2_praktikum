@@ -4,7 +4,6 @@
 
 @section('content')
     <!-- Menetapkan isi konten untuk bagian @yield('content') di file template  -->
-    <!--  -->
     <h2>Selamat datang di Halaman Utama</h2>
     <!-- Tabel menampilkan data pengguna -->
     <table>

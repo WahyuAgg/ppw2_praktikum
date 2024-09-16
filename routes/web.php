@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,11 +22,19 @@ Route::get('/', function (){
 
 Route::get('/about', function(){
     return view('about', [
-        'name' => 'Antony santos', 
-        'email' => 'elgasing@gmail.com' 
+        'name' => 'Antony santos',
+        'email' => 'elgasing@gmail.com'
     ]);
 });
 
-Route::get('/home', function(){
-    return view('home');
-});
+
+Route::get('/posts', [PostController::class, 'index']);
+
+use App\Http\Controllers\HomeController;
+// imports the HomeController class.
+
+Route::get('/home', [HomeController::class, 'index']);
+// Kode diatas maksudnya adalah pada saat url /blog diakes pada web browser
+// maka method/function index() pada HomeController.php akan dijalankan.
+
+Route::get('/buku', [BukuController::class, 'index']);

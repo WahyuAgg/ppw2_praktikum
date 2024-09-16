@@ -4,15 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() 
-    { 
-        return view('posts');
-    } 
+    public function index()
+    {
+        return view('home');
+        // ketika HomeController diakses maka akan menjalankan index()
+        // index() mengembalikan view(home) yang mengarah ke home.blade.php
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

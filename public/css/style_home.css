@@ -1,11 +1,10 @@
-/* File: public/css/style_home.css */
 
 /* Gaya umum untuk body */
 body {
-    font-family: Arial, sans-serif; /* Gunakan font yang bersih dan mudah dibaca */
+    font-family: Arial, sans-serif; 
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4; /* Latar belakang abu-abu muda untuk halaman */
+    background-color: #f4f4f4; 
 }
 
 /* Gaya untuk kontainer */
@@ -13,9 +12,8 @@ body {
     width: 80%;
     margin: 0 auto;
     padding: 20px; 
-    background: #fff; /* Latar belakang putih untuk area konten */
-    border-radius: 8px; /* Sudut membulat untuk kontainer */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Bayangan lembut di sekitar kontainer */
+    background: #fff; 
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
 /* Gaya untuk tabel */
@@ -26,7 +24,7 @@ table {
 }
 
 table, th, td {
-    border: 1px solid #ddd; /* Border abu-abu muda untuk tabel */
+    border: 1px solid #ddd; 
 }
 
 th, td {

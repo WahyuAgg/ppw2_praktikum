@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->timestamp('created_at')->nullable(); // Add the column name here
-            $table->timestamp('updated_at')->nullable(); // Add updated_at column if needed
+            $table->timestamp('created_at')->nullable(); 
+            $table->timestamp('updated_at')->nullable(); 
         });
     }
 
