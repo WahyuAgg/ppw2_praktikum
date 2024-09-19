@@ -3,14 +3,16 @@
 <head>
     <!-- Menetapkan judul halaman. Default ke 'Default Title' jika tidak ditentukan dari home.blade.php-->
     <title>@yield('title', 'Default Title')</title>
-    
+
     <!-- Menautkan file'css' -->
     <link rel="stylesheet" href="{{ asset('css/style_home.css') }}">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <!-- Bagian header, judul situs dan menu navigasi -->
     <header>
-        <h1>My Laravel Application</h1>
+        <h1>@yield('name_page', 'Default Title')</h1>
         <nav>
             <ul>
                 <li><a href="{{ url('/') }}">Home</a></li>
@@ -22,7 +24,7 @@
 
     <!-- Kontainer untuk konten utama halaman -->
     <div class="container">
-        @yield('content') 
+        @yield('content')
         <!-- Ini akan digantikan oleh konten dari home.blade.php -->
     </div>
 
