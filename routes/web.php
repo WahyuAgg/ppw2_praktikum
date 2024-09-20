@@ -37,9 +37,9 @@ Route::get('/buku', [BukuController::class, 'index']);
 // Rute untuk menampilkan halaman create untuk menambah buku
 Route::get('/buku/create',[BukuController::class,'create'])->name('buku.create');
 
-
 // Rute Menyimpan data buku setelah form create di-submit
 Route::post('/buku',[BukuController::class, 'store'])->name('buku.store');
+
 
 // Rute Menghapus buku berdasarkan ID
 Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');

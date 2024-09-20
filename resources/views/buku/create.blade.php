@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title', 'Tambahkan Buku')
-@section('name_page','Tambakan Buku')
+@section('name_page','Tambah Buku')
 
 @section('content')
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
@@ -34,3 +34,6 @@
     </div>
 
 @endsection
+
+
+

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buku;
-use Illuminate\Http\Request; // Use Illuminate\Http\Request instead of GuzzleHttp\Psr7\Request
+use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Http\Request; // Use Illuminate\Http\Request instead of GuzzleHttp\Psr7\Request
 
 class BukuController extends Controller
 {
@@ -20,10 +21,11 @@ class BukuController extends Controller
 
         return view('buku.index', compact('data_buku', 'jumlah_buku', 'total_harga'));
     }
+
     public function create(){
         return view('buku.create');
     }
-
+    
     public function store(Request $request){
         $buku = new Buku();
         $buku->judul = $request->judul;
@@ -34,13 +36,13 @@ class BukuController extends Controller
 
         return redirect('/buku');
     }
+
     public function destroy($id){
         $buku = Buku::find($id);
         $buku->delete();
-
+        
         return redirect('/buku');
     }
-
 
     public function edit($id) {
         // Mengambil buku berdasarkan ID
@@ -49,7 +51,6 @@ class BukuController extends Controller
         // Mengirimkan data buku ke view
         return view('buku.edit', compact('buku'));
     }
-
 
     public function update(Request $request, $id)
     {
@@ -60,19 +61,16 @@ class BukuController extends Controller
         if ($request->filled('judul')) {
             $buku->judul = $request->input('judul');
         }
-
         if ($request->filled('penulis')) {
             $buku->penulis = $request->input('penulis');
         }
-
         if ($request->filled('harga')) {
             $buku->harga = $request->input('harga');
         }
-
         if ($request->filled('tgl_terbit')) {
             $buku->tgl_terbit = $request->input('tgl_terbit');
         }
-
+            
         // Simpan perubahan ke database
         $buku->save();
 
