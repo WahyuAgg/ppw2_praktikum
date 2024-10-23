@@ -9,6 +9,11 @@ use Illuminate\Http\Request; // Use Illuminate\Http\Request instead of GuzzleHtt
 
 class BukuController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Membatasi semua metode hanya untuk pengguna yang sudah login
+    }
+
     public function index(){
         // Mengambil semua data buku
         $data_buku = Buku::all()->sortByDesc('id');
@@ -25,7 +30,7 @@ class BukuController extends Controller
     public function create(){
         return view('buku.create');
     }
-    
+
     public function store(Request $request){
         $buku = new Buku();
         $buku->judul = $request->judul;
@@ -40,7 +45,7 @@ class BukuController extends Controller
     public function destroy($id){
         $buku = Buku::find($id);
         $buku->delete();
-        
+
         return redirect('/buku');
     }
 
@@ -54,7 +59,6 @@ class BukuController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Temukan buku berdasarkan ID
         $buku = Buku::findOrFail($id);
 
         // Update atribut hanya jika data request ada dan tidak null
@@ -70,7 +74,7 @@ class BukuController extends Controller
         if ($request->filled('tgl_terbit')) {
             $buku->tgl_terbit = $request->input('tgl_terbit');
         }
-            
+
         // Simpan perubahan ke database
         $buku->save();
 
