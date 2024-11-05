@@ -12,6 +12,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    // Konstanta untuk level user
+    const LEVEL_CUSTOMER = 'customer';
+    const LEVEL_ADMIN = 'admin';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -21,7 +25,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'level',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.

@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\BukuController;
-use App\Http\Controllers\PostController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
+// use App\Http\Middleware\CheckUserLevel;
 
 use App\Http\Controllers\Auth\LoginRegisterController;
 
@@ -20,10 +20,13 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 |
 */
 
+// ROUTE DOMAIN
 Route::get('/', function (){
     return view('welcome');
-});
+})->name('welcome');
 
+
+// Home & About
 Route::get('/about', function(){
     return view('about', [
         'name' => 'Antony santos',
@@ -31,35 +34,56 @@ Route::get('/about', function(){
     ]);
 });
 
-Route::get('/posts', [PostController::class, 'index']);
-
 Route::get('/home', [HomeController::class, 'index']);
 
-// Pertemuan 5: Menampilkan semua data buku
-Route::get('/buku', [BukuController::class, 'index']);
 
-// Rute untuk menampilkan halaman create untuk menambah buku
-Route::get('/buku/create',[BukuController::class,'create'])->name('buku.create');
 
-// Rute Menyimpan data buku setelah form create di-submit
-Route::post('/buku',[BukuController::class, 'store'])->name('buku.store');
+// Group route BukuController
+Route::controller(BukuController::class)->group(function () {
+    // Rute untuk menampilkan semua data buku
+    Route::get('/buku', 'index')->name('buku.index');
 
-// Rute Menghapus buku berdasarkan ID
-Route::delete('/buku/{id}', [BukuController::class, 'destroy'])->name('buku.destroy');
+});
 
-// Rute untuk menampilkan halaman edit
-Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+// Group route BukuController
+Route::controller(BukuController::class)->group(function () {
 
-// Rute Memperbarui data buku berdasarkan ID
-Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
+    // route untuk menampilkan halaman create untuk menambah buku
+    Route::get('/buku/create', 'create')->name('buku.create');
 
-// route login register
+    // route menyimpan data buku setelah form create di-submit
+    Route::post('/buku', 'store')->name('buku.store');
+
+    // route menghapus buku berdasarkan ID
+    Route::delete('/buku/{id}', 'destroy')->name('buku.destroy');
+
+    // route untuk menampilkan halaman edit
+    Route::get('/buku/{id}/edit', 'edit')->name('buku.edit');
+
+    // route memperbarui data buku berdasarkan ID
+    Route::put('/buku/{id}', 'update')->name('buku.update');
+});
+
+// group route for LoginRegisterController
 Route::controller(LoginRegisterController::class)->group(function () {
     Route::get('register', 'register')->name('register');
-    Route::post('store', 'store')->name('store');
+    // Route::post('store', 'store')->name('store');
     Route::get('login', 'login')->name('login');
     Route::post('authenticate', 'authenticate')->name('authenticate');
     Route::get('dashboard', 'dashboard')->name('dashboard');
     Route::post('logout', 'logout')->name('logout');
 });
+
+
+// menerapkan middleware ke route
+Route::get('restricted', function () {
+    return redirect()->route('dashboard')->withSuccess("Anda berusia lebih dari 18 tahun!");
+})->middleware('checkage');
+
+
+
+// route dashboard admin menggunakan checkUserLevel
+Route::get('admin/dashboard', function () {
+    return view('dashboard_admin');
+})->middleware('checkUserLevel:' . App\Models\User::LEVEL_ADMIN);
 

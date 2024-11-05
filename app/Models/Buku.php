@@ -17,7 +17,8 @@ class Buku extends Model
         'judul',        // Kolom judul
         'penulis',      // Kolom penulis
         'harga',        // Kolom harga
-        'tgl_terbit'    // Kolom tanggal terbit
+        'tgl_terbit',   // Kolom tanggal terbit
+        'cover'         // Kolom url cover
     ];
 
     // Menentukan tipe data yang harus di-cast

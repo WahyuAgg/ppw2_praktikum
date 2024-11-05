@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <title>Data Buku</title>
 </head>
+
 <body>
     <div class="container-fluid px-7 my-4 bg-light p-5">
         <h1 class="mb-4">Data Buku</h1>
@@ -14,6 +16,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
+                    <th>Cover</th>
                     <th>ID</th>
                     <th>Judul Buku</th>
                     <th>Penulis</th>
@@ -25,25 +28,32 @@
 
             <tbody>
                 @foreach($data_buku as $buku)
-                    <tr>
-                        <td>{{ $buku->id }}</td>
-                        <td>{{ $buku->judul }}</td>
-                        <td>{{ $buku->penulis }}</td>
-                        <td>{{ "Rp. ".number_format($buku->harga, 2, ',', '.') }}</td>
-                        <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/Y') }}</td>
-                        <td>
-                            <form action="{{route('buku.destroy', $buku->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button onclick="return confirm('Yakin mau dihapus?')" type="submit" class="btn btn-danger">
-                                    Hapus
-                                </button>
-                            </form>
-                        </td>
-                        <td>
-                            <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning">Edit</a>
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @if($buku->cover)
+                        <img src="{{ asset('storage/'.$buku->cover) }}" width="250vw">
+                        @else
+                        <img src="{{ asset('noimage.jpg') }}" width="250vw">
+                        @endif
+                    </td>
+                    <td>{{ $buku->id }}</td>
+                    <td>{{ $buku->judul }}</td>
+                    <td>{{ $buku->penulis }}</td>
+                    <td>{{ "Rp. ".number_format($buku->harga, 2, ',', '.') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($buku->tgl_terbit)->format('d/m/Y') }}</td>
+                    <td>
+                        <form action="{{route('buku.destroy', $buku->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button onclick="return confirm('Yakin mau dihapus?')" type="submit" class="btn btn-danger">
+                                Hapus
+                            </button>
+                        </form>
+                    </td>
+                    <td>
+                        <a href="{{ route('buku.edit', $buku->id) }}" class="btn btn-warning">Edit</a>
+                    </td>
+                </tr>
                 @endforeach
             </tbody>
         </table>
@@ -57,4 +67,5 @@
         <p class="h4">Total Harga Semua Buku: {{ "Rp. ".number_format($total_harga, 2, ',', '.') }}</p>
     </div>
 </body>
+
 </html>

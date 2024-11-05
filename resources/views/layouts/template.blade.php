@@ -1,3 +1,5 @@
+
+{{-- resources\views\layouts\latout2.blade.php --}}
 <!DOCTYPE html>
 <html>
 <head>
