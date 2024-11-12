@@ -7,7 +7,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Laravel 10 Custom User Registration & Login Tutorial AllPHPTricks.com</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  {{-- <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet"> --}}
+  <link rel="stylesheet" href="{{ asset('lightbox2/dist/css/lightbox.min.css') }}">
+  <script src="{{ asset('lightbox2/dist/js/lightbox-plus-jquery.min.js') }}"></script>
 
 </head>
 
@@ -15,12 +16,16 @@
 <body>
     <nav class="navbar navbar-expand-lg bg-light">
       <div class="container">
-        <a class="navbar-brand" href="{{ url('/') }}">Custom Login Register</a>
+        <a class="navbar-brand" href="{{ url('/') }}">Home</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a class="nav-link {{ request()->is('gallery') ? 'active' : '' }}" href="{{ route('gallery.index') }}">Gallery</a>
+            </li>
+
             @guest
               <li class="nav-item">
                 <a class="nav-link {{ (request()->is('login')) ? 'active' : '' }}" href="{{ route('login') }}">Login</a>

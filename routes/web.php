@@ -87,3 +87,23 @@ Route::get('admin/dashboard', function () {
     return view('dashboard_admin');
 })->middleware('checkUserLevel:' . App\Models\User::LEVEL_ADMIN);
 
+
+use App\Http\Controllers\GalleryController;
+
+Route::controller(GalleryController::class)->group(function () {
+
+    Route::get('/gallery', 'index')->name('gallery.index');
+
+    Route::get('/gallery/create', 'create')->name('gallery.create');
+
+    Route::post('/gallery', 'store')->name('gallery.store');
+
+    Route::delete('/gallery/{id}', 'destroy')->name('gallery.destroy');
+
+    Route::get('/gallery/{id}/edit', 'edit')->name('gallery.edit');
+
+    Route::put('/gallery/{id}', 'update')->name('gallery.update');
+});
+
+
+
