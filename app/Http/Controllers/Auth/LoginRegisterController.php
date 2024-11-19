@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Jobs\SendRegistrationEmail;
 use Illuminate\Support\Facades\Auth;
 
 class LoginRegisterController extends Controller
@@ -22,27 +23,33 @@ class LoginRegisterController extends Controller
         return view("auth.register");
 
     }
-    public function store(Request $request) {
-        $request-> validate([
-            'name' => 'required|string|max:250',
-            'email'=>'required|email|max:250|unique:users',
-            'password'=> 'required|min:8|confirmed'
+    public function store(Request $request)
+    {
+        // Validasi data formulir
+        $request->validate([
+            'name' => 'required|string|max:250', 
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required|min:8|confirmed'
         ]);
 
-        User::create([
-            'name'=> $request->name,
-            'email'=>$request->email,
-            'password'=>Hash::make($request->password)
+        // Membuat user baru
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password), // Mengenkripsi password sebelum disimpan
         ]);
 
-        $credentials = $request->only('email', 'password');
+        // Login user
+        Auth::login($user); // Otomatis login user setelah registrasi
+        $request->session()->regenerate(); // Regenerasi sesi untuk keamanan
 
-        Auth::attempt($credentials);
+        // Menjalankan job untuk mengirimkan email registrasi
+        dispatch(new SendRegistrationEmail($user)); // Mengirim email ke user yang baru terdaftar
 
-        $request->session()->regenerate();
-
-        return redirect()->route('dashboard')->withSuccess('Register and login success');
+        // Redirect ke dashboard dengan pesan sukses
+        return redirect()->route('dashboard')->withSuccess('Registrasi dan login berhasil, email telah dikirim.');
     }
+
 
 
 
