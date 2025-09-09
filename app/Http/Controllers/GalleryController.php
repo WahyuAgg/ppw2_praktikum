@@ -8,6 +8,39 @@ use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
 {
+    /**
+     * API rute
+     */
+    public function apiIndex(Request $request)
+    {
+        $galleries = Post::where('picture', '!=', '')
+            ->whereNotNull('picture')
+            ->orderBy('created_at', 'desc')
+            ->paginate(30);
+
+        return response()->json([
+            'id' => 'posts',
+            'menu' => 'Gallery',
+            'galleries' => $galleries
+        ], 200);
+    }
+
+    // GalleryController.php
+
+    public function getGalleries()
+    {
+        $galleries = Post::where('picture', '!=', '')
+            ->whereNotNull('picture')
+            ->orderBy('created_at', 'desc')
+            ->get();
+
+        return response()->json([
+            'galleries' => $galleries
+        ], 200);
+    }
+
+
+
     public function index()
     {
         $data = [
