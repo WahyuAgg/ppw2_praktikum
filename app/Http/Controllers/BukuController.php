@@ -9,10 +9,10 @@ use Illuminate\Http\Request; // Use Illuminate\Http\Request instead of GuzzleHtt
 
 class BukuController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth'); // Membatasi semua metode hanya untuk pengguna yang sudah login
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth'); // Membatasi semua metode hanya untuk pengguna yang sudah login
+    // }
 
     public function index(){
         // Mengambil semua data buku

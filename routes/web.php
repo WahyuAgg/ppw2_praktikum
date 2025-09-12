@@ -20,16 +20,17 @@ use App\Http\Controllers\Auth\LoginRegisterController;
 |
 */
 
-Route::get('/', function (){
-    return view('welcome');
+Route::get('/', function () {
+    return redirect('/buku');
 });
 
-Route::get('/about', function(){
-    return view('about', [
-        'name' => 'Antony santos',
-        'email' => 'elgasing@gmail.com'
-    ]);
-});
+
+// Route::get('/about', function(){
+//     return view('about', [
+//         'name' => 'Antony santos',
+//         'email' => 'elgasing@gmail.com'
+//     ]);
+// });
 
 Route::get('/posts', [PostController::class, 'index']);
 
@@ -54,12 +55,12 @@ Route::get('/buku/{id}/edit', [BukuController::class, 'edit'])->name('buku.edit'
 Route::put('/buku/{id}', [BukuController::class, 'update'])->name('buku.update');
 
 // route login register
-Route::controller(LoginRegisterController::class)->group(function () {
-    Route::get('register', 'register')->name('register');
-    Route::post('store', 'store')->name('store');
-    Route::get('login', 'login')->name('login');
-    Route::post('authenticate', 'authenticate')->name('authenticate');
-    Route::get('dashboard', 'dashboard')->name('dashboard');
-    Route::post('logout', 'logout')->name('logout');
-});
+// Route::controller(LoginRegisterController::class)->group(function () {
+//     Route::get('register', 'register')->name('register');
+//     Route::post('store', 'store')->name('store');
+//     Route::get('login', 'login')->name('login');
+//     Route::post('authenticate', 'authenticate')->name('authenticate');
+//     Route::get('dashboard', 'dashboard')->name('dashboard');
+//     Route::post('logout', 'logout')->name('logout');
+// });
 
